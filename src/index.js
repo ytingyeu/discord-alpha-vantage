@@ -5,6 +5,9 @@ import stock from "stock-ticker-symbol";
 import { getCurretPrice } from "./utils";
 import { discordToken, cmdPrefix } from "./config";
 
+import "core-js/stable"; // included < Stage 4 proposals
+import "regenerator-runtime/runtime";
+
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
 // this is what we're refering to. Your client.
