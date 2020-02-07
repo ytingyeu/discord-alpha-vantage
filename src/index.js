@@ -1,8 +1,7 @@
 // Load up the discord.js library
 import { Client } from "discord.js";
-
+import { getCurretPrice } from "./utils";
 import { discordToken, cmdPrefix } from "./config";
-import { getIntraDayData } from "./alphavantage";
 
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
@@ -30,23 +29,32 @@ client.on("message", async message => {
   // which is set in the configuration file.
   if (!message.content.startsWith(cmdPrefix)) return;
 
-  const target = message.content.slice("stock:".length).trim();
+  const target = message.content.slice("stock:".length).trim().toUpperCase();
+
   let replyMessage;
 
   if (target !== null) {
+    getCurretPrice(target)
+      .then(data => {
+        let change = (data.now - data.yesterday).toFixed(2);
+        let changePercent = (change / data.yesterday).toFixed(4) * 100;
 
-    // try {
-    //   getIntraDayData(target);
-    // } catch(error) {
-      
-    // }
+        if (change >= 0) {
+          change = '+' + change;
+          changePercent = '+' + changePercent;
+        }
 
-    replyMessage = target;
-
-    // Then we delete the command message (sneaky, right?). The catch just ignores the error
-    message.delete().catch(() => {});
-    // And we get the bot to say the thing:
-    message.channel.send(replyMessage);
+        replyMessage = `${target}    USD ${data.now}    ${change} (${changePercent}%)`;
+      })
+      .catch(error => {
+        replyMessage = `壞了QQ ${error.status}`;
+      })
+      .finally(() => {
+        // Then we delete the command message (sneaky, right?). The catch just ignores the error
+        //message.delete().catch(() => {});
+        // And we get the bot to say the thing:
+        message.channel.send(replyMessage);
+      });
   }
 });
 
