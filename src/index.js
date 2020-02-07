@@ -1,5 +1,7 @@
 // Load up the discord.js library
 import { Client } from "discord.js";
+import stock from "stock-ticker-symbol";
+
 import { getCurretPrice } from "./utils";
 import { discordToken, cmdPrefix } from "./config";
 
@@ -37,17 +39,19 @@ client.on("message", async message => {
     getCurretPrice(target)
       .then(data => {
         let change = (data.now - data.yesterday).toFixed(2);
-        let changePercent = (change / data.yesterday).toFixed(4) * 100;
+        let changePercent = (change / data.yesterday * 100).toFixed(2);
 
         if (change >= 0) {
           change = '+' + change;
           changePercent = '+' + changePercent;
         }
 
-        replyMessage = `${target}    USD ${data.now}    ${change} (${changePercent}%)`;
+        const name = stock.lookup(target);
+
+        replyMessage = `${name}    USD ${data.now}    ${change} (${changePercent}%)`;
       })
       .catch(error => {
-        replyMessage = `壞了QQ ${error.status}`;
+        replyMessage = `找不到這支股票 QQ`;
       })
       .finally(() => {
         // Then we delete the command message (sneaky, right?). The catch just ignores the error

@@ -16,7 +16,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ytingyeu/discord-alpha-vantage/issues"
   },
@@ -24,11 +24,12 @@
   "dependencies": {
     "axios": "^0.19.2",
     "discord.js": "^11.5.1",
-    "luxon": "^1.22.0"
+    "luxon": "^1.22.0",
+    "stock-ticker-symbol": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
-    "@babel/preset-es2015": "^7.0.0-beta.53"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
