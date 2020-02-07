@@ -1,5 +1,5 @@
-const discordToken = "DISCORD_TOKEN";
-const alphavantageKey = "API_KEY";
+const discordToken = "discordToken";
+const alphavantageKey = "alphavantageKey";
 const cmdPrefix = "stock:";
 
 export {
