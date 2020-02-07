@@ -103,5 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-# Sensitive config
-src/config.js
+# VSC
+.prettierrc
