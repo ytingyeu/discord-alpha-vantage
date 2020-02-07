@@ -1,5 +1,5 @@
-import { getMockIntraData } from "./getMockIntraData";
-import { getMockDailyData } from "./getMockDailyData";
+// import { getMockIntraData } from "./getMockIntraData";
+// import { getMockDailyData } from "./getMockDailyData";
 import { DateTime } from "luxon";
 import { getDailyData, getIntradayData } from "./alphaVantageOperations";
 
@@ -55,8 +55,8 @@ const getCurretPrice = async target => {
   }
 
   return {
-    now: parseFloat(lastIntervalClosing),
-    yesterday: parseFloat(yesterdayClosing)
+    now: parseFloat(lastIntervalClosing).toFixed(2),
+    yesterday: parseFloat(yesterdayClosing).toFixed(2)
   };
 };
 
