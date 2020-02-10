@@ -15,14 +15,12 @@ export async function getIntradayData(target) {
     }
   };
 
-  return await axios
-    .get(apiEndpoint, config)
-    .then(response => {
-      return response["data"];
-    })
-    .catch(error => {
-      throw error;
-    });
+  try {
+    const response = await axios.get(apiEndpoint, config);
+    return response["data"];
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function getDailyData(target) {
@@ -35,12 +33,10 @@ export async function getDailyData(target) {
     }
   };
 
-  return await axios
-    .get(apiEndpoint, config)
-    .then(response => {
-      return response["data"];
-    })
-    .catch(error => {
-      throw error;
-    });
+  try {
+    const response = await axios.get(apiEndpoint, config);
+    return response["data"];
+  } catch (error) {
+    throw error;
+  }
 }

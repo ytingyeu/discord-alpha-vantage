@@ -10,27 +10,36 @@ const getCurretPrice = async target => {
   let intraData;
   let dailyData;
 
-  await getIntradayData(target)
+  Promise.all([getIntradayData(target), getDailyData(target)])
     .then(data => {
-      if (data["Error Message"]) {
-        throw new Error();
-      }
-      intraData = data;
+      intraData = data[0];
+      dailyData = data[1];
     })
     .catch(error => {
-      throw error;
+      throw new Error(error);
     });
 
-  await getDailyData(target)
-    .then(data => {
-      if (data["Error Message"]) {
-        throw new Error();
-      }
-      dailyData = data;
-    })
-    .catch(error => {
-      throw error;
-    });
+  // await getIntradayData(target)
+  //   .then(data => {
+  //     if (data["Error Message"]) {
+  //       throw new Error();
+  //     }
+  //     intraData = data;
+  //   })
+  //   .catch(error => {
+  //     throw error;
+  //   });
+
+  // await getDailyData(target)
+  //   .then(data => {
+  //     if (data["Error Message"]) {
+  //       throw new Error();
+  //     }
+  //     dailyData = data;
+  //   })
+  //   .catch(error => {
+  //     throw error;
+  //   });
 
   let lastIntervalClosing;
 
