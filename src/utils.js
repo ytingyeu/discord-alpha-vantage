@@ -10,10 +10,12 @@ const getCurretPrice = async target => {
   let intraData;
   let dailyData;
 
-  Promise.all([getIntradayData(target), getDailyData(target)])
+  await Promise.all([getIntradayData(target), getDailyData(target)])
     .then(data => {
       intraData = data[0];
       dailyData = data[1];
+
+      console.log(dailyData)
     })
     .catch(error => {
       throw new Error(error);
