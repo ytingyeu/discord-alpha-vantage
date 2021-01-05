@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/ytingyeu/discord-alpha-vantage#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "discord.js": "^11.5.1",
     "luxon": "^1.22.0",
     "stock-ticker-symbol": "^1.1.0"
